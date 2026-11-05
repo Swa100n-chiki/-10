@@ -1,0 +1,23 @@
+name: Run on push
+
+# Запуск workflow после каждого push в репозиторий
+on:
+  push:
+
+jobs:
+  push-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get source code
+        uses: actions/checkout@v4
+
+      - name: Show trigger event
+        run: echo "Workflow запущен событием - ${{ github.event_name }}"
+
+      - name: Show branch and commit
+        run: |
+          echo "Ветка - ${{ github.ref_name }}"
+          echo "Коммит - ${{ github.sha }}"
+
+      - name: Show repository files
+        run: ls -la
